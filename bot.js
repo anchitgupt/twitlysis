@@ -3,6 +3,7 @@ console.log("bot is starting.");
 //importing the twit Library
 
 var Twit = require('twit');
+var fs   = require('fs');
 
 var config = require('./config');
 //OAuth
@@ -12,11 +13,13 @@ var T = new Twit(config);
 tweetit();
 //post
 function tweetit() {
-  var r = Math.floor(Math.random() * 100);
-  var tweet = {
-    status: '#Nodejs #npm #twit Tweet From NodeJS This is number '+r+'.'
+  
+  var query = {
+    q: 'India since:2019-02-28',
+    count: 3
   };
-  T.post('statuses/update', tweet, tweeter);
+  
+    T.get('search/tweets', query, tweeter);
 
 function tweeter(err, data, response) {
     if (err) {
@@ -24,7 +27,14 @@ function tweeter(err, data, response) {
       console.log(err);
     } else {
       console.log("It Worked!!!");
+      console.log('#################');
+      //console.log(data);
+      var x ='';
+      data.statuses.forEach(element => {
+        x = x + element.text;
+        x = x + "\n####################";
+      });
+      console.log(x);
     }
   }
-
 }
