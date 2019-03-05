@@ -2,9 +2,9 @@
   "name": "npm_demo",
   "version": "1.0.0",
   "description": "I am demonstrating npm.",
-  "main": "bot.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node bot.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,6 +18,9 @@
   "author": "Anchit Gupta",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
     "twit": "^2.2.11"
   }
 }
