@@ -67,19 +67,53 @@
     </div>
 
     <div class="container mt-5">
+        <% if (query != null) { %>
+        <div class="chart-container justify-content-center align-items-center" style="position: relative; height:30vh; width:30vw">
+            <canvas id="myChart"></canvas>
+        </div>
+        <% } %>
+        <hr>
         <h1>Tweets</h1>
         <hr>
         <ul class="list-group">
-            <% if (query != null) %>
+            <% if (query != null){ %>
             <% for (var q of query){ %>
-            <li class="card list-group-item mt-4">
-                <%= q %>
+            <li class = "card list-group-item mt-4" >
+                <%= q %> 
             </li>
-            <% } %>
+            <% } } %>
         </ul>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <% var r = red %>
+    <% var g = green %>
     <script type="text/javascript">
-
+        var ctx = document.getElementById("myChart");
+        var p1 = <%= r  %>;
+        var p2 = <%= g  %>;
+        console.log(p1);
+        console.log(p2);
+        
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Negative","Positive"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [p1, p2],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', 
+                            'rgba(75, 192, 192, 0.2)'
+                           
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
     </script>
 </body>
 

@@ -1,6 +1,8 @@
 var express = require('express');
 const bodyParser = require('body-parser');
 var Twit = require('twit');
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
 //var fs   = require('fs');
 var config = require('./config');
 var T = new Twit(config);
@@ -15,7 +17,9 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.render('index', {
-        query: null
+        query: null,
+        red: null,
+        green: null
     });
 });
 
@@ -26,7 +30,7 @@ app.post('/', function (req, res) {
     var query = {
         q: `${query} since:${date}`,
         result_type: 'popular',
-        count: 3,
+        count: 20,
         lang: 'en',
         truncated: 'false',
         tweet_mode: 'extended',
@@ -37,16 +41,26 @@ app.post('/', function (req, res) {
             console.log('ERROR: ', err);
         }).
     then(function (result) {
-        s
         var x = [];
         result.data.statuses.forEach(element => {
             x.push(element.full_text);
         });
-        //  x.forEach(element => {
-        //     console.log(element);
-        //  });
+        var pos = 0,
+            neg = 0;
+        x.forEach(element => {
+            var x = sentiment.analyze(element);
+            //console.log("ANalysis:: ", x.score);
+
+            if (x.score >= 0) { // to add the neutral statement
+                pos++;
+            } else {
+                neg++;
+            }
+        });
         res.render('index', {
-            query: x
+            query: x,
+            red: neg,
+            green: pos
         });
     });
 });
@@ -63,8 +77,10 @@ function getDate() {
     if (mm < 10) {
         mm = '0' + mm;
     }
-    return yyyy-mm-dd;
+    return yyyy - mm - dd;
 }
 
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log(`App running at http://localhost:3000`)
+})
