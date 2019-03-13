@@ -9,7 +9,11 @@ In this:
 * Express
 * Twit
 * EJS
+* Sentiment
 
+### Prerequisite
+    * NodeJS (version above 8)
+    
 ### Installation
 
 1. Download Zip or Import using fork the repository and then to your desktop.
@@ -28,5 +32,9 @@ In this:
 5. run `npm start` or `node index.js` here **index.js** is the main file.
 6. open https://localhost:3000 to see the project
 
+#### TODO:
+    * To fix UI components.
+    * Adding name to the tweets.
+    * Indivisual tweets sentiment.
 
 **Feel free to contact for suggestions**
