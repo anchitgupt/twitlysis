@@ -9,6 +9,7 @@ var T = new Twit(config);
 
 var app = express();
 app.use(express.static('public'));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -39,28 +40,34 @@ app.post('/', function (req, res) {
     T.get('search/tweets', query)
         .catch(function (err) {
             console.log('ERROR: ', err);
-        }).
-    then(function (result) {
+        }).then(function (result) {
         var x = [];
+        var json_res = [];
+        var pos = 0,neg = 0;
+        
         result.data.statuses.forEach(element => {
-            x.push(element.full_text);
-        });
-        var pos = 0,
-            neg = 0;
-        x.forEach(element => {
-            var x = sentiment.analyze(element);
-            //console.log("ANalysis:: ", x.score);
-
-            if (x.score >= 0) { // to add the neutral statement
+            var text = element.full_text;
+            x.push(text);
+            var model = sentiment.analyze(text);
+            console.log("Analysis:: ", model.score);
+            if (model.score >= 0) { // to add the neutral statement
                 pos++;
             } else {
                 neg++;
             }
+            k = {
+                'text': text,
+                'score': model.score,
+                'user': element.user.name,
+                'location': element.user.location
+            };
+            json_res.push(k); 
         });
         res.render('index', {
             query: x,
             red: neg,
-            green: pos
+            green: pos,
+            res: json_res
         });
     });
 });
@@ -83,4 +90,4 @@ function getDate() {
 
 app.listen(3000, () => {
     console.log(`App running at http://localhost:3000`)
-})
+});

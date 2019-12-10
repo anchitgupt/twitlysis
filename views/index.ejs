@@ -68,18 +68,41 @@
 
     <div class="container mt-5">
         <% if (query != null) { %>
-        <div class="chart-container justify-content-center align-items-center" style="position: relative; height:30vh; width:30vw">
-            <canvas id="myChart"></canvas>
+        <div class="row">
+                <div class="chart-container justify-content-center align-items-center col" style="position: relative; height:30vh; width:30vw">
+                <canvas id="myChart"></canvas>
+                </div>
+                <div class="col">
+                    <p class="text-primary">Score:</p>
+                    <p class="text-info">Total Tweets: <%= green+red %></p>
+                    <p class="text-primary">Positive Tweets: <%= green %></p>
+                    <p class="text-danger">Negative Tweets: <%= red %></p>
+                </div>
         </div>
+
         <% } %>
+        </br>
+        </br>
+        </br>
+        </br>
         <hr>
         <h1>Tweets</h1>
         <hr>
         <ul class="list-group">
             <% if (query != null){ %>
-            <% for (var q of query){ %>
+           
+            <% for (var q of res){ %>
             <li class = "card list-group-item mt-4" >
-                <%= q %> 
+                <blockquote class="blockquote">
+                    <p><%= q.text %></p>
+                    <footer class="blockquote-footer"><%= q.user%>, <%= q.location %></footer>
+                </blockquote>
+                <hr>
+                <% if (q.score >= 0 ){ %>
+                <label class="badge badge-success">Score: <%= q.score %></label>
+                <% } else {%>
+                    <label class="badge badge-danger">Score: <%= q.score %></label>
+                <% }%>
             </li>
             <% } } %>
         </ul>
@@ -116,5 +139,29 @@
             });
     </script>
 </body>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<footer class="page-footer" lang="en-ca">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                Last modified: 03 March, 2019 12:25 IST</div>
+            <div class="col-md-4">
+                <!--   -->
+            </div>
+            <div class="col-md-4">
+                <a title="Project on GitHub" href="https://github.com/anchitgupt/twitlysis"
+                    target="_blank" rel="noopener">Source</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </html>

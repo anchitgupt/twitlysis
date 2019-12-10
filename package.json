@@ -18,10 +18,11 @@
   "author": "Anchit Gupta",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "sentiment": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.1",
+    "sentiment": "^5.0.2",
     "twit": "^2.2.11"
   }
 }
