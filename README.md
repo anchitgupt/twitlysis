@@ -34,7 +34,7 @@ In this:
 
 #### TODO:
     * To fix UI components.
-    * Adding name to the tweets.
-    * Indivisual tweets sentiment.
+    * ~~Adding name to the tweets.~~
+    * ~~Indivisual tweets sentiment.~~
 
 **Feel free to contact for suggestions**
