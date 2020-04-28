@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.set('view engine', 'ejs');
 
-
+// GET
 app.get('/', function (req, res) {
     res.render('index', {
         query: null,
@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
     });
 });
 
-
+// POST default
 app.post('/', function (req, res) {
     var query = req.body.query;
     var date = getDate();
@@ -50,7 +50,8 @@ app.post('/', function (req, res) {
             x.push(text);
             var model = sentiment.analyze(text);
             console.log("Analysis:: ", model.score);
-            if (model.score >= 0) { // to add the neutral statement
+            if (model.score >= 0) 
+            { // to add the neutral statement
                 pos++;
             } else {
                 neg++;
