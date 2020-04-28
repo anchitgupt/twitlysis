@@ -49,7 +49,7 @@ app.post('/', function (req, res) {
             var text = element.full_text;
             x.push(text);
             var model = sentiment.analyze(text);
-            console.log("Analysis:: ", model.score);
+            // console.log("Analysis:: ", model.score);
             if (model.score >= 0) 
             { // to add the neutral statement
                 pos++;

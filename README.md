@@ -32,9 +32,5 @@ In this:
 5. run `npm start` or `node index.js` here **index.js** is the main file.
 6. open https://localhost:3000 to see the project
 
-#### TODO:
-    * To fix UI components.
-    * ~~ Adding name to the tweets. ~~
-    * ~~ Indivisual tweets sentiment. ~~
 
 **Feel free to contact for suggestions**
