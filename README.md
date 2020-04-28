@@ -1,6 +1,8 @@
 # Twitlysis
 Simple tweet analyser using Nodejs.
 
+![](images/preview.gif)
+
 ### Technology Used
 
 In this: 
